@@ -17,6 +17,8 @@ Esse arquivo contem informações importantes sobre o que são APIs, como funcio
     </ul>
     <li><a href="#maturity-levels">Níveis de Maturidade do REST</a></li>
     <li><a href="#hateoas">HATEOAS</a></li>
+    <li><a href="#swagger">Swagger</a></li>
+    <li><a href="#authentication">Autenticação</a></li>
 </ul>
   
 <h2 id="web-services">Webservices</h2>
@@ -216,4 +218,36 @@ Significa <i>Hypermedia As The Engine Of Application State</i> e é uma restriç
 
 A utilização do HATEOAS nas APIs facilita o desenvolvimento, na medida que fornece somente os passos possíveis, evitando retrabalho. Em um aplicativo de banco por exemplo, se estamos com saldo positivo e fazemos uma verificação de extrado, um HATEOAS de resposta possível nos indicaria operações de saque, depósito e transferência, por exemplo. Já se o saldo é negativo, não faz sentido dar ao usuário as opções de saque ou transferência, retornando uma referência apenas para depósito.
 
-<h2 id=""></h2>
+<h2 id="swagger">Swagger</h2>
+Framework mais utilizado para documentação de APIs REST, facilitando o desenvolvimento dos clientes de comunicação com o servidor, já que entrega à equipe de desenvolvimento frontend as informações necessárias para consumir a API.  
+  
+Esse é um adicional (REST Glory) para quando a API desenvolvida já atingiu o maior nível de maturidade possível.  
+  
+O Swagger é bastante utilizado, se tornando quase um padrão de projeto obrigatório nos dias atuais. Ele é bastante útil principalmente porque mantem a API sempre atualizada, minimizando o trabalho dos desenvolvedores. Ele possui também uma certa inteligência por trás, que é capaz de gerar textos explicativos para os propósitos das rotas disponíveis.  
+  
+<h2 id="authentication">Autenticação</h2>
+Passo intermediário a requisições restritivas, significando que é necessário que o cliente esteja autenticado para realizar certas operações. Essa autenticação geralmente é feita por JWT, que significa JSON Web Token  
+  
+A construção do JWT é feita por bibliotecas específicas, mas conta com três partes principais:  
+  
+<b><span style="color:red">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span>.<span style="color:green">eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ</span>.<span style="color:purple">yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HMCsM</style></b>
+  
+A parte em <b><span style="color:red">vermelho</span></b>, antes do primeiro ponto final, indica o cabeçalho do token. Nela estão indicados o algoritmo de encriptaçãodo token e o tipo do mesmo. Nesse caso, seria algo como:  
+  
+<code>
+{
+    "alg": "HS256",
+    "typ": "JWT"
+}
+</code>
+  
+A parte em <b><span style="color:green">verde</span></b>, que está entre os dois pontos finais, é a responsável por guardar as informações pessoais do cliente requisitante, como e-mail e ID. Quando decodificada, ela também fica em JSON, seguindo um padrão semelhante a este:
+  
+<code>
+{
+    "email": "aylan@boscarino.com",
+    "id": 123
+}
+</code>
+  
+Por fim, em <b><span style="color:purple">roxo</span></b>, que é a parte após o último ponto final do token, está a assinatura única gerada para aquele JWT em questão. Essa parte é apenas para identificar se o token recebido pelo servidor é válido, tanto em forma quanto em tempo.
