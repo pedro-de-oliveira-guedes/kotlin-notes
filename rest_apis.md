@@ -235,7 +235,7 @@ A construção do JWT é feita por bibliotecas específicas, mas conta com três
   
 <b><span style="color:red">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span>.<span style="color:green">eyJlbWFpbCI6ImF5bGFuQGJvc2Nhcmluby5jb20iLCJwYXNzd29yZCI6InlhMGdzcWh5NHd6dnV2YjQifQ</span>.<span style="color:purple">yN_8-Mge9mFgsnYHnPEh_ZzNP7YKvSbQ3Alug9HMCsM</style></b>
   
-A parte em <b><span style="color:red">vermelho</span></b>, antes do primeiro ponto final, indica o cabeçalho do token. Nela estão indicados o algoritmo de encriptaçãodo token e o tipo do mesmo. Nesse caso, seria algo como:  
+A parte antes do primeiro ponto final, indica o cabeçalho do token. Nela estão indicados o algoritmo de encriptaçãodo token e o tipo do mesmo. Nesse caso, seria algo como:  
   
 <code>
 {
@@ -244,7 +244,7 @@ A parte em <b><span style="color:red">vermelho</span></b>, antes do primeiro pon
 }
 </code>
   
-A parte em <b><span style="color:green">verde</span></b>, que está entre os dois pontos finais, é a responsável por guardar as informações pessoais do cliente requisitante, como e-mail e ID. Quando decodificada, ela também fica em JSON, seguindo um padrão semelhante a este:
+A parte que está entre os dois pontos finais, é a responsável por guardar as informações pessoais do cliente requisitante, como e-mail e ID. Quando decodificada, ela também fica em JSON, seguindo um padrão semelhante a este:
   
 <code>
 {
@@ -253,7 +253,7 @@ A parte em <b><span style="color:green">verde</span></b>, que está entre os doi
 }
 </code>
   
-Por fim, em <b><span style="color:purple">roxo</span></b>, que é a parte após o último ponto final do token, está a assinatura única gerada para aquele JWT em questão. Essa parte é apenas para identificar se o token recebido pelo servidor é válido, tanto em forma quanto em tempo.
+Por fim, na parte após o último ponto final do token, está a assinatura única gerada para aquele JWT em questão. Essa parte é apenas para identificar se o token recebido pelo servidor é válido, tanto em forma quanto em tempo.
   
 <h2 id="versioning">Versionamento</h2>
 Garante que aplicaçoes que utilizam versões anteriores da API disponibilizadas não quebrem em atualizações.  
@@ -263,13 +263,13 @@ Para garantir o versionamento, o servidor pode aceitar o indicador de versão em
 <ul>
     <li>
         <b>URL (PATH)</b>: É dev-friendly, mas polui a URL enviada com informações que não são dados específicos para a operação, mas sim de versionamento.
-    <li>
+    </li>
     <li>
         <b>HEADER</b>: Não é dev-friendly, mas deixa a URL de requisição mais limpa.
-    <li>
+    </li>
     <li>
         <b>DOMAIN</b>: Não é muito utilizado, mas é possível modificar o DNS da API utilizada para evidenciar a versão consumida. Seria algo como: "https://my-api-v1.com" -> "https://my-api-v2.com"
-    <li>
+    </li>
 </ul>
 
 <h2 id="over-restful">O que está além do RESTful</h2>
