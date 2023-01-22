@@ -19,6 +19,9 @@ Esse arquivo contem informações importantes sobre o que são APIs, como funcio
     <li><a href="#hateoas">HATEOAS</a></li>
     <li><a href="#swagger">Swagger</a></li>
     <li><a href="#authentication">Autenticação</a></li>
+    <li><a href="#versioning">Versionamento</a></li>
+    <li><a href="#over-restful">O que está além do RESTful</a></li>
+    <li><a href="#best-practices">Boas práticas</a></li>
 </ul>
   
 <h2 id="web-services">Webservices</h2>
@@ -251,3 +254,98 @@ A parte em <b><span style="color:green">verde</span></b>, que está entre os doi
 </code>
   
 Por fim, em <b><span style="color:purple">roxo</span></b>, que é a parte após o último ponto final do token, está a assinatura única gerada para aquele JWT em questão. Essa parte é apenas para identificar se o token recebido pelo servidor é válido, tanto em forma quanto em tempo.
+  
+<h2 id="versioning">Versionamento</h2>
+Garante que aplicaçoes que utilizam versões anteriores da API disponibilizadas não quebrem em atualizações.  
+  
+Para garantir o versionamento, o servidor pode aceitar o indicador de versão em qualquer um dos campos de parâmetro já estudados, sendo que os mais recomendados são pela <i>URL</i> incluída no <i>PATH</i> e pelo <i>HEADER</i> da requisição.  
+  
+<ul>
+    <li>
+        <b>URL (PATH)</b>: É dev-friendly, mas polui a URL enviada com informações que não são dados específicos para a operação, mas sim de versionamento.
+    <li>
+    <li>
+        <b>HEADER</b>: Não é dev-friendly, mas deixa a URL de requisição mais limpa.
+    <li>
+    <li>
+        <b>DOMAIN</b>: Não é muito utilizado, mas é possível modificar o DNS da API utilizada para evidenciar a versão consumida. Seria algo como: "https://my-api-v1.com" -> "https://my-api-v2.com"
+    <li>
+</ul>
+
+<h2 id="over-restful">O que está além do RESTful</h2>
+Após desenvolver a API no maior nível de REST, é possível, por exemplo comercializá-la para o público externo. Para isso, são aplicadas duas téncnicas que são utilizadas também para garantir maior geração de renda:
+<ul>
+    <li>
+        <b>Limitação de requisições</b>: Deixa um cliente realizar um número X de requisições por dia, contanto que pague um valor Y + C*X por mês, por exemplo.  
+        <br>
+        <b>O que é Limitação de Consultas?</b>
+        <blockquote>
+            <a href="https://www.keycdn.com/support/rate-limiting">https://www.keycdn.com/support/rate-limiting</a>
+        </blockquote>
+        <br>
+        <b>Técnicas de Limitação de Consultas</b>
+        <blockquote>
+            <a href="https://nordicapis.com/everything-you-need-to-know-about-api-rate-limiting/">https://nordicapis.com/everything-you-need-to-know-about-api-rate-limiting/</a>
+        </blockquote>
+    </li>
+    <br>
+    <li>
+        <b>Software Development Kits (SDKs)</b>: Os kits de desenvolvimento de software são amplamente utilizados para facilitar a integração da API no código escrito, já que o trabalho de realizar a requisição, bem como o tratamento dela é terceirizado. Esses SDKs atuam como bibliotecas disponíveis para os usuários, precisando ser atualizados constantemente com a evolução da API.
+    </li>
+</ul>
+
+<h2 id="best-practices">Boas práticas</h2>
+Somente estruturar a API seguindo o padrão arquitetural REST e atingir o RESTful pode não ser o suficiente, já que essas restrições tratam muito mais da organização da API do que da performance dela em si. Para garantir uma boa performance, podemos utilizar os princípios que vão à Glória do REST como foi mostrado no tópico acima, além de outras boas práticas, cujas principais serão abordadas a seguir:
+<ul>
+    <li>
+        <b>Paginação</b>: Para listas de informações muito extensas, é interessante delimitar a quantidade de itens que serão enviados para o cliente em cada request, para isso, são criadas as paginações. A partir dessa prática, é possível configurar a quantidade de elementos por página, bem como o cliente acessará as páginas seguintes.
+    </li>
+    <li>
+        <b>Filtros</b>: Para limitar a quantidade de dados retornados para o cliente, também é bastante útil filtrar o banco de dados apenas pelas informações relevantes, seja os campos retornados ou as especificações de cada objeto retornado.
+    </li>
+    <li>
+        <b>Definição de recursos lógicos</b>: Delimitação de cada um dos tipos de objetos tratados na API, criando um endpoint para cada. Dialoga diretamente com o primeiro nível de APIs RESTful.
+    </li>
+    <li>
+        <b>Tolerância a falhas</b>: Evitar que o servidor quebre após uma requisição mal feita, por exemplo é crucial. Além disso, em erros internos ou externos, é sempre importante avisar o cliente sobre o estado atual da requisição, mostrando a ele mensagens descritivas sobre o que está acontecendo.
+    </li>
+    <li>
+        <b>Caches</b>: Abrigar informações muito requisitadas em memória rápida, para evitar sobrecarga no servidor.
+    </li>
+    <li>
+        <b>Conectividade</b>: Facilitar a conexão com a API.
+    </li>
+    <li>
+        <b>Timeouts</b>: Não deixar uma requisição em espera para sempre. Isso pode diminuir a performance do servidor, na medida que outras requisições entrantes ficam travadas em um gargalo de tempo. Após certo tempo sem resolução da requisição, ela deve cair e notificar o usuário sobre o que ocorreu.
+    </li>
+    <li>
+        <b>Documentação</b>: Facilita a integração da API com diferentes serviços de cliente. O SWAGGER, já comentado nessas notas, é a referência no assunto.
+    </li>
+    <li>
+        <b>Utilizar SSL</b>: Promove segurança para os utilizadores da API.
+    </li>
+    <li>
+        <b>Versionamento</b>: Outro tópico já comentado nesse documento, se trata de não deixar clientes que utilizam versões antigas da API quebrarem após atualizações.
+    </li>
+    <li>
+        <b>Testes e validação (automatizados)</b>: Ajuda a detectar erros de projeto mais facilmente. Por exemplo, suponha que uma das dependências da API teve uma atualização, de forma que a versão antiga deixou de obter suporte, isso poderia ser mais facilmente detectado por um teste automático.
+    </li>
+    <li>
+        <b>Self-Service</b>: Os próprios clientes conseguem acessar e escolher o que consumir na API. Isso é obtido através de documentações.
+    </li>
+    <li>
+        <b>Marketing</b>: Em APIs de propósito comercial, é importante divulgá-las para o público certo, o que aumentará a renda recebida.
+    </li>
+    <li>
+        <b>Exportações</b>: Promover ao cliente a possibilidade de transformar os formatos de resposta para melhor atender às necessidades (XML -> JSON -> TXT -> ...).
+    </li>
+    <li>
+        <b>Notificações</b>: Para requisições muito pesadas, o tempo de processamento pode ser muito alto. Para evitar de deixar o cliente esperando, deve-se fornecer um STATUS Code 201, por exemplo, avisando que a solicitação está na fila e que o usuário será notificado pela plataforma de escolha quando a requisição tiver sido concluída.
+    </li>
+    <li>
+        <b>Monitoramento</b>: Verificar quais são os endpoints que mais recebem requisições por exemplo, qual e a carga distribuída pelos diferentes pontos do servidor, de forma a facilitar o balanceamento e manutenção (preditiva, principalmente).
+    </li>
+    <li>
+        <b>Selecionar a tecnologia adequada</b>: Nem sempre a melhor tecnologia é a mais moderna, mas a que facilita o desenvolvimento nos contratos especificados.
+    </li>
+</ul>
