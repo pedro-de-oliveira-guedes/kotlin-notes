@@ -154,7 +154,7 @@ O projeto gerado pelo Spring Boot possui algumas pastas importantes para sabermo
         <b>Target</b>: Contem o programa já compilado e pronto para ser executado. Não existe inicialmente, só após a primeira compilação.
     </li>
 </ul>
-<br><br>
+<br>
 <h3 id="endpoints">Criando endpoints</h3>
 Nessa seção, há um passo a passo básico sobre como configurar um <i>endpoint</i> para a aplicação desenvolvida. Antes há alguns conceitos importantes para entendimento:
 <ul>
@@ -179,3 +179,37 @@ Nessa seção, há um passo a passo básico sobre como configurar um <i>endpoint
         </blockquote>
     </li>
 </ul>
+<br>
+Após o entendimento de alguns conceitos, podemos definir um passo a passo de como criar uma rota básica de GET para a aplicação.
+<ol>
+    <li>
+        Gere o projeto Spring Boot e o importe no editor de código de escolha.
+    </li>
+    <li>
+        Crie um arquivo de classe do Kotlin dentro da pasta que contem o arquivo principal da aplicação (/src/main/kotlin/[ID do seu grupo]).
+    </li>
+    <li>
+        Defina um construtor e modele a classe da forma que preferir para a utilização.
+    </li>
+    <li>
+        Crie uma classe para o Controlador.
+    </li>
+    <li>
+        Antes da declaração da classe, inclua a notação "<i>@RestController</i>".
+    </li>
+    <li>
+        Modele a classe, de forma que pelo menos uma função seja incluída.
+    </li>
+    <li>
+        Inclua um mapeamento de endpoint ("<i>@RequestMapping (/[nome do endpoint])</i>") para a função escolhida, exatamente acima dela. Lembre-se de que essa função precisa retornar algo.
+    </li>
+    <li>
+        Nos parâmetros da função escolhida, inclua os parâmetros que a rota admite, seguindo as recomendações acima.
+    </li>
+    <li>
+        Se estiver usando o IntelliJ, basta clicar com o botão direito sobre o arquivo principal localizado em "<i>/src/main/kotlin/[ID do grupo]</i>" e selecionar a opção de rodar a aplicação.
+    </li>
+    <li>
+        Por padrão, o TomCat utiliza a porta 8080, portanto basta acessar "<i>localhost:8080/[sua rota aqui]</i>" para testar e conferir os resultados.
+    </li>
+</ol>
