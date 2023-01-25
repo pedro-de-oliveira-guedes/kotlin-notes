@@ -15,6 +15,9 @@ Esse arquivo contem informações importantes sobre o que é o Spring Boot, como
                 <a href="#folders-structure">Estrutura de pastas</a>
             </li>
             <li>
+                <a href="#concepts">Conceitos importantes</a>
+            </li>
+            <li>
                 <a href="#endpoints">Criando endpoints</a>
             </li>
         </ul>
@@ -155,8 +158,7 @@ O projeto gerado pelo Spring Boot possui algumas pastas importantes para sabermo
     </li>
 </ul>
 <br>
-<h3 id="endpoints">Criando endpoints</h3>
-Nessa seção, há um passo a passo básico sobre como configurar um <i>endpoint</i> para a aplicação desenvolvida. Antes há alguns conceitos importantes para entendimento:
+<h3 id="concepts">Conceitos importantes</h3>
 <ul>
     <li>
         <b>Annotations</b>: Palavras reservadas do Spring Boot que realizam tarefas de import e configuração na aplicação. Elas sempre são precedidas por um "<i>@</i>". A primeira delas é "<b><i>@SpringBootApplication</i></b>, que define a aplicação atual como sendo configurada pelo Spring Boot. Essa anotação realiza diversos imports em arquivos paralelos que configuram o ambiente de desenvolvimento.
@@ -178,21 +180,34 @@ Nessa seção, há um passo a passo básico sobre como configurar um <i>endpoint
             <b>Observação:</b> Para utilizar a variável associada ao parâmetro em uma string é utilizada a notação nativa do Kotlin de acesso a variáveis, que consiste em posicionar um <b>$</b> antes do nome da variável a ser utilizada.
         </blockquote>
     </li>
+    <li>
+        <b>Path Variables</b>: Referentes aos parâmetros da URL obrigatórios. Antes de transportar os parâmetros informados na URL para o código, é importante configurar o mapeamento da rota para abrangê-los, isso é feito da seguinte maneira
+        <br>
+        <code>
+            @RequestMapping("/[nome do endpoint]/{[nome do parâmetro 1]}/{[nome do parâmetro 2]}/...")
+        </code>
+        <br>
+        Definido o mapeamento de rota, os parâmetros do path são incluídos como argumentos da função mapeada normalmente, seguindo o seguinte padrão:
+        <br>
+        <code>
+            @PathVariable(value="[nome do parâmetro]") [nome do parâmetro]: [Tipo do parâmetro, geralmente String]
+        </code>
+        Nesse caso, não é possível definir um valor padrão para o parâmetro, caso ele não seja recebido, já que são obrigatórios.
+        <blockquote>
+            <b>Mais informações:</b> <a href="https://www.baeldung.com/spring-pathvariable">Spring Path Variable</a>
+        </blockquote>
+    </li>
 </ul>
 <br>
-Após o entendimento de alguns conceitos, podemos definir um passo a passo de como criar uma rota básica de GET para a aplicação.
+<h3 id="endpoints">Criando endpoints</h3>
+Nessa seção, há um passo a passo básico sobre como configurar um <i>endpoint</i> para a aplicação desenvolvida.
+<br>
 <ol>
     <li>
         Gere o projeto Spring Boot e o importe no editor de código de escolha.
     </li>
     <li>
-        Crie um arquivo de classe do Kotlin dentro da pasta que contem o arquivo principal da aplicação (/src/main/kotlin/[ID do seu grupo]).
-    </li>
-    <li>
-        Defina um construtor e modele a classe da forma que preferir para a utilização.
-    </li>
-    <li>
-        Crie uma classe para o Controlador.
+        Crie um arquivo de classe do Kotlin dentro da pasta que contem o arquivo principal da aplicação (/src/main/kotlin/[ID do grupo]) para o controlador.
     </li>
     <li>
         Antes da declaração da classe, inclua a notação "<i>@RestController</i>".
@@ -204,7 +219,7 @@ Após o entendimento de alguns conceitos, podemos definir um passo a passo de co
         Inclua um mapeamento de endpoint ("<i>@RequestMapping (/[nome do endpoint])</i>") para a função escolhida, exatamente acima dela. Lembre-se de que essa função precisa retornar algo.
     </li>
     <li>
-        Nos parâmetros da função escolhida, inclua os parâmetros que a rota admite, seguindo as recomendações acima.
+        Nos argumentos da função escolhida, inclua os parâmetros que a rota admite, seguindo as recomendações do tópico anterior.
     </li>
     <li>
         Se estiver usando o IntelliJ, basta clicar com o botão direito sobre o arquivo principal localizado em "<i>/src/main/kotlin/[ID do grupo]</i>" e selecionar a opção de rodar a aplicação.
