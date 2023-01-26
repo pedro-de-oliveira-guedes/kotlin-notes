@@ -1,4 +1,4 @@
-package com.example
+package com.example.validations
 
 class Validator {
     fun isNumber(strNumber: String): Double? {
