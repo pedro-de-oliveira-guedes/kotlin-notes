@@ -1,5 +1,6 @@
 package com.example
 
+import com.example.exceptions.BadRequestExceptions
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -14,9 +15,9 @@ class BasicCalculatorController {
         val numberOneDouble = validator.isNumber(numberOne)
         val numberTwoDouble = validator.isNumber(numberTwo)
 
-        return if (numberOneDouble != null && numberTwoDouble != null)
-            numberOneDouble + numberTwoDouble
+        if (numberOneDouble != null && numberTwoDouble != null)
+            return numberOneDouble + numberTwoDouble
         else
-            throw Exception("Um dos parâmetros informados não é um número.")
+            throw BadRequestExceptions("One of the parameters is not a number.")
     }
 }
