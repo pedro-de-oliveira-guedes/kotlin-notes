@@ -1,12 +1,11 @@
-package com.example
+package com.example.controler
 
 import com.example.exceptions.BadRequestExceptions
 import com.example.mathOperations.mathOperations
+import com.example.validations.Validator
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import com.example.validations.Validator
-import kotlin.math.pow
 
 @RestController
 class BasicCalculatorController {
