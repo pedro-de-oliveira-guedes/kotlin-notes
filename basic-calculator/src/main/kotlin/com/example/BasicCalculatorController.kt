@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import com.example.validations.Validator
+import kotlin.math.pow
 
 @RestController
 class BasicCalculatorController {
@@ -71,6 +72,17 @@ class BasicCalculatorController {
 
         if (numberOneDouble != null)
             return kotlin.math.sqrt(numberOneDouble)
+        else
+            throw BadRequestExceptions("One of the parameters is not a number.")
+    }
+
+    @RequestMapping("/power/{numberOne}/{numberTwo}")
+    fun power(@PathVariable numberOne: String, @PathVariable numberTwo: String): Double {
+        val numberOneDouble = validator.isNumber(numberOne)
+        val numberTwoDouble = validator.isNumber(numberTwo)
+
+        if (numberOneDouble != null && numberTwoDouble != null)
+            return numberOneDouble.pow(numberTwoDouble)
         else
             throw BadRequestExceptions("One of the parameters is not a number.")
     }
