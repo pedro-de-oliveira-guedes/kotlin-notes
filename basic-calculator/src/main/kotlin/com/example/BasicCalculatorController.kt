@@ -1,6 +1,7 @@
 package com.example
 
 import com.example.exceptions.BadRequestExceptions
+import com.example.mathOperations.mathOperations
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -11,13 +12,15 @@ import kotlin.math.pow
 class BasicCalculatorController {
     val validator = Validator()
 
+    val mathOperations = mathOperations()
+
     @RequestMapping("/sum/{numberOne}/{numberTwo}")
     fun sum(@PathVariable numberOne: String, @PathVariable numberTwo: String): Double {
         val numberOneDouble = validator.isNumber(numberOne)
         val numberTwoDouble = validator.isNumber(numberTwo)
 
         if (numberOneDouble != null && numberTwoDouble != null)
-            return numberOneDouble + numberTwoDouble
+            return mathOperations.sum(numberOneDouble, numberTwoDouble)
         else
             throw BadRequestExceptions("One of the parameters is not a number.")
     }
@@ -28,7 +31,7 @@ class BasicCalculatorController {
         val numberTwoDouble = validator.isNumber(numberTwo)
 
         if (numberOneDouble != null && numberTwoDouble != null)
-            return numberOneDouble - numberTwoDouble
+            return mathOperations.sub(numberOneDouble, numberTwoDouble)
         else
             throw BadRequestExceptions("One of the parameters is not a number.")
     }
@@ -39,7 +42,7 @@ class BasicCalculatorController {
         val numberTwoDouble = validator.isNumber(numberTwo)
 
         if (numberOneDouble != null && numberTwoDouble != null)
-            return numberOneDouble * numberTwoDouble
+            return mathOperations.mul(numberOneDouble, numberTwoDouble)
         else
             throw BadRequestExceptions("One of the parameters is not a number.")
     }
@@ -50,7 +53,7 @@ class BasicCalculatorController {
         val numberTwoDouble = validator.isNumber(numberTwo)
 
         if (numberOneDouble != null && numberTwoDouble != null)
-            return numberOneDouble / numberTwoDouble
+            return mathOperations.div(numberOneDouble, numberTwoDouble)
         else
             throw BadRequestExceptions("One of the parameters is not a number.")
     }
@@ -61,7 +64,7 @@ class BasicCalculatorController {
         val numberTwoDouble = validator.isNumber(numberTwo)
 
         if (numberOneDouble != null && numberTwoDouble != null)
-            return (numberOneDouble + numberTwoDouble) / 2
+            return mathOperations.avg(numberOneDouble, numberTwoDouble)
         else
             throw BadRequestExceptions("One of the parameters is not a number.")
     }
@@ -71,7 +74,7 @@ class BasicCalculatorController {
         val numberOneDouble = validator.isNumber(numberOne)
 
         if (numberOneDouble != null)
-            return kotlin.math.sqrt(numberOneDouble)
+            return mathOperations.sqrt(numberOneDouble)
         else
             throw BadRequestExceptions("One of the parameters is not a number.")
     }
@@ -82,7 +85,7 @@ class BasicCalculatorController {
         val numberTwoDouble = validator.isNumber(numberTwo)
 
         if (numberOneDouble != null && numberTwoDouble != null)
-            return numberOneDouble.pow(numberTwoDouble)
+            return mathOperations.power(numberOneDouble, numberTwoDouble)
         else
             throw BadRequestExceptions("One of the parameters is not a number.")
     }
