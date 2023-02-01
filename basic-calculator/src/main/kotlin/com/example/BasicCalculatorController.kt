@@ -20,4 +20,15 @@ class BasicCalculatorController {
         else
             throw BadRequestExceptions("One of the parameters is not a number.")
     }
+
+    @RequestMapping("/sub/{numberOne}/{numberTwo}")
+    fun sub(@PathVariable numberOne: String, @PathVariable numberTwo: String): Double {
+        val numberOneDouble = validator.isNumber(numberOne)
+        val numberTwoDouble = validator.isNumber(numberTwo)
+
+        if (numberOneDouble != null && numberTwoDouble != null)
+            return numberOneDouble - numberTwoDouble
+        else
+            throw BadRequestExceptions("One of the parameters is not a number.")
+    }
 }
