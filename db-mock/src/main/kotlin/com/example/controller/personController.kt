@@ -17,7 +17,7 @@ class personController {
     private lateinit var services: PersonServices
 
     @RequestMapping(value = ["/{id}"], method = [RequestMethod.GET], produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun test(@PathVariable(value = "id") id: Long): Person {
+    fun getById(@PathVariable(value = "id") id: Long): Person {
         return services.getById(id)
     }
 }
