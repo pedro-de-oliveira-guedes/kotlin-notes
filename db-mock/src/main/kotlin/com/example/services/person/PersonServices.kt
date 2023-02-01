@@ -1,6 +1,7 @@
 package com.example.services.person
 
 import com.example.models.person.Person
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.concurrent.atomic.AtomicLong
 import java.util.logging.Logger
@@ -18,5 +19,14 @@ class PersonServices {
         val returnedPerson = Person(id, "Mockerson Mockelson de Mockers", 17, "Mooocked Street, Mockest Wirginia, Mockers")
 
         return returnedPerson
+    }
+
+    fun getAll(): List<Person> {
+        var people: MutableList<Person> = ArrayList()
+
+        for (id in 1..10)
+            people.add(this.getById(id.toLong()))
+
+        return people
     }
 }
