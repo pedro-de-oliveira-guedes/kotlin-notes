@@ -20,4 +20,9 @@ class personController {
     fun getById(@PathVariable(value = "id") id: Long): Person {
         return services.getById(id)
     }
+
+    @RequestMapping(method = [RequestMethod.GET], produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun getAll(): List<Person> {
+        return services.getAll()
+    }
 }
