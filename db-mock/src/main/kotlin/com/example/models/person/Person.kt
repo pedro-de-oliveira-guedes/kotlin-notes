@@ -1,4 +1,4 @@
-package com.example.person
+package com.example.models.person
 
 import java.util.concurrent.atomic.AtomicLong
 
