@@ -53,4 +53,15 @@ class BasicCalculatorController {
         else
             throw BadRequestExceptions("One of the parameters is not a number.")
     }
+
+    @RequestMapping("/avg/{numberOne}/{numberTwo}")
+    fun avg(@PathVariable numberOne: String, @PathVariable numberTwo: String): Double {
+        val numberOneDouble = validator.isNumber(numberOne)
+        val numberTwoDouble = validator.isNumber(numberTwo)
+
+        if (numberOneDouble != null && numberTwoDouble != null)
+            return (numberOneDouble + numberTwoDouble) / 2
+        else
+            throw BadRequestExceptions("One of the parameters is not a number.")
+    }
 }
