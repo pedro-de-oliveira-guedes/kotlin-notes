@@ -64,4 +64,14 @@ class BasicCalculatorController {
         else
             throw BadRequestExceptions("One of the parameters is not a number.")
     }
+
+    @RequestMapping("/sqrt/{numberOne}")
+    fun sqrt(@PathVariable numberOne: String,): Double {
+        val numberOneDouble = validator.isNumber(numberOne)
+
+        if (numberOneDouble != null)
+            return kotlin.math.sqrt(numberOneDouble)
+        else
+            throw BadRequestExceptions("One of the parameters is not a number.")
+    }
 }
