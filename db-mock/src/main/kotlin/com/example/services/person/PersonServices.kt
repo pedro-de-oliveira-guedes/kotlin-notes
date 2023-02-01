@@ -13,6 +13,8 @@ class PersonServices {
 
     private val autoId: AtomicLong = AtomicLong()
 
+    private val database: MutableList<Person> = ArrayList()
+
     fun getById(id: Long): Person {
         sysLogger.info("Searching person with the provided ID!")
 
@@ -30,5 +32,13 @@ class PersonServices {
             people.add(this.getById(id.toLong()))
 
         return people
+    }
+
+    fun registerNewPerson(person: Person): Person {
+        sysLogger.info("Registering new person into the database.")
+
+        this.database.add(person)
+
+        return person
     }
 }
