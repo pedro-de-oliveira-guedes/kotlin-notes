@@ -24,6 +24,8 @@ class PersonServices {
     fun getAll(): List<Person> {
         var people: MutableList<Person> = ArrayList()
 
+        sysLogger.info("Querying every person registered in the Database.")
+
         for (id in 1..10)
             people.add(this.getById(id.toLong()))
 
