@@ -53,7 +53,17 @@ class personController {
         try {
             return services.updatePerson(id, properties)
         }
-        catch (err: Exception) {
+        catch(err: Exception) {
+            throw err
+        }
+    }
+
+    @RequestMapping(value = ["/delete/{id}"])
+    fun delete(@PathVariable(value = "id")id: Long) {
+        try {
+            services.deletePerson(id)
+        }
+        catch(err: Exception) {
             throw err
         }
     }
