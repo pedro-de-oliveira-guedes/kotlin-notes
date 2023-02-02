@@ -31,4 +31,9 @@ class personController {
     fun register(@RequestBody person: Person): Person {
         return services.registerNewPerson(person)
     }
+
+    @RequestMapping(value = ["/update/{id}"], method = [RequestMethod.PUT], consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE],)
+    fun update(@RequestBody properties: Person, @PathVariable(value = "id")id: Long): Person {
+        return services.updatePerson(id, properties)
+    }
 }
