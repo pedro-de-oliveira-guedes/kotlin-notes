@@ -15,23 +15,18 @@ class PersonServices {
 
     private val database: MutableList<Person> = ArrayList()
 
-    fun getById(id: Long): Person {
+    fun getById(id: Long): List<Person> {
         sysLogger.info("Searching person with the provided ID!")
 
-        val returnedPerson = Person(id, "Mockerson Mockelson de Mockers", 17, "Mooocked Street, Mockest Wirginia, Mockers")
+        var returnedPerson = database.filter { p -> p.id == id }
 
         return returnedPerson
     }
 
     fun getAll(): List<Person> {
-        var people: MutableList<Person> = ArrayList()
-
         sysLogger.info("Querying every person registered in the Database.")
 
-        for (id in 1..10)
-            people.add(this.getById(id.toLong()))
-
-        return people
+        return database
     }
 
     fun registerNewPerson(person: Person): Person {
