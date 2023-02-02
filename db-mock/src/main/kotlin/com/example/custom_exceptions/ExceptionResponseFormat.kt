@@ -4,7 +4,7 @@ import java.sql.Timestamp
 import java.util.Date
 
 class ExceptionResponseFormat (
-    timestamp: Date = Date(),
-    message: String? = "An error occurred.",
-    details: String? = "Error!"
+    val timestamp: Date = Date(),
+    val message: String? = "An error occurred.",
+    val details: String? = "Error!"
 )
