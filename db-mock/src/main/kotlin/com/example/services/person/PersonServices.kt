@@ -59,4 +59,13 @@ class PersonServices {
         else
             throw BadRequestExcept("Provided ID does not exists in the database.")
     }
+
+    fun deletePerson(id: Long) {
+
+        val deletedPerson = this.getById(id)
+        if (deletedPerson.isEmpty())
+            return
+
+        this.database.remove(deletedPerson[0])
+    }
 }
