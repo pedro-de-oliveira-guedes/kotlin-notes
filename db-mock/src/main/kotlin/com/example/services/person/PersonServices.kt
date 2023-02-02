@@ -62,10 +62,12 @@ class PersonServices {
 
     fun deletePerson(id: Long) {
 
+        sysLogger.info("Searching person to be delete.")
         val deletedPerson = this.getById(id)
         if (deletedPerson.isEmpty())
             return
 
+        sysLogger.info("Deleting person.")
         this.database.remove(deletedPerson[0])
     }
 }
