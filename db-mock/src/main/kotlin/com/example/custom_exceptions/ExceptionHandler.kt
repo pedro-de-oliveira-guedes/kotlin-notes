@@ -29,6 +29,6 @@ class ExceptionHandler : ResponseEntityExceptionHandler(){
             details = request.getDescription(false),
         )
 
-        return ResponseEntity<ExceptionResponseFormat>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR)
+        return ResponseEntity<ExceptionResponseFormat>(exceptionResponse, HttpStatus.BAD_REQUEST)
     }
 }
