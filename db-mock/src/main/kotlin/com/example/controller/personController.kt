@@ -20,17 +20,32 @@ class personController {
 
     @RequestMapping(value = ["/{id}"], method = [RequestMethod.GET], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun getById(@PathVariable(value = "id") id: Long): List<Person> {
-        return services.getById(id)
+        try {
+            return services.getById(id)
+        }
+        catch(err: Exception) {
+            throw err
+        }
     }
 
     @RequestMapping(method = [RequestMethod.GET], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun getAll(): List<Person> {
-        return services.getAll()
+        try {
+            return services.getAll()
+        }
+        catch(err: Exception) {
+            throw err
+        }
     }
 
     @RequestMapping(method = [RequestMethod.POST], consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE],)
     fun register(@RequestBody person: Person): Person {
-        return services.registerNewPerson(person)
+        try {
+            return services.registerNewPerson(person)
+        }
+        catch(err: Exception) {
+            throw err
+        }
     }
 
     @RequestMapping(value = ["/update/{id}"], method = [RequestMethod.PUT], consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE],)
