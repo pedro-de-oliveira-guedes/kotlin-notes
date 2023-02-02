@@ -32,6 +32,7 @@ class PersonServices {
     fun registerNewPerson(person: Person): Person {
         sysLogger.info("Registering new person into the database.")
 
+        person.id = this.autoId.incrementAndGet()
         this.database.add(person)
 
         return person
