@@ -36,7 +36,7 @@ class personController {
     @RequestMapping(value = ["/update/{id}"], method = [RequestMethod.PUT], consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE],)
     fun update(@RequestBody properties: Person, @PathVariable(value = "id")id: Long): Person {
         val updatedPerson = services.updatePerson(id, properties)
-        println("aaaaaaaaaaaaaaaaaaaaa $updatedPerson")
+
         if (updatedPerson != null)
             return updatedPerson
         else
