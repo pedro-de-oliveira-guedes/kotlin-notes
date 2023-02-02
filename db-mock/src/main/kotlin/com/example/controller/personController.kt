@@ -1,5 +1,6 @@
 package com.example.controller
 
+import com.example.custom_exceptions.BadRequestExcept
 import com.example.models.person.Person
 import com.example.services.person.PersonServices
 import org.springframework.beans.factory.annotation.Autowired
@@ -34,6 +35,11 @@ class personController {
 
     @RequestMapping(value = ["/update/{id}"], method = [RequestMethod.PUT], consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE],)
     fun update(@RequestBody properties: Person, @PathVariable(value = "id")id: Long): Person {
-        return services.updatePerson(id, properties)
+        val updatedPerson = services.updatePerson(id, properties)
+        println("aaaaaaaaaaaaaaaaaaaaa $updatedPerson")
+        if (updatedPerson != null)
+            return updatedPerson
+        else
+            throw BadRequestExcept("The informed ID does not exists in the database.")
     }
 }
