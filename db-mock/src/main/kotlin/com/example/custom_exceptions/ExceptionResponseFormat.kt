@@ -5,6 +5,6 @@ import java.util.Date
 
 class ExceptionResponseFormat (
     timestamp: Date = Date(),
-    message: String = "An error occurred.",
-    details: String = "Error!"
+    message: String? = "An error occurred.",
+    details: String? = "Error!"
 )
