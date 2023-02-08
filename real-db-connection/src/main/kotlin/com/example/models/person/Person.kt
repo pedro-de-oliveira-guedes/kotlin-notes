@@ -7,14 +7,14 @@ import jakarta.persistence.*
 class Person(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    var id: Long,
 
     @Column(name = "name", nullable = false, length = 100)
-    val name: String,
+    var name: String,
 
     @Column(name = "age", nullable = false)
-    val age: Int,
+    var age: Int,
 
     @Column(name = "address", nullable = false)
-    val address: String,
+    var address: String,
 )
