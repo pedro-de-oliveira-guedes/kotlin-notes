@@ -52,5 +52,11 @@ class PersonServices {
 
     fun deletePerson(id: Long) {
         sysLogger.info("Deleting a person by its ID.")
+
+        val deletedPerson = peopleRepo.findById(id).orElseThrow {
+            NotFoundException("This person does not exists.")
+        }
+
+        return peopleRepo.delete(deletedPerson)
     }
 }
