@@ -45,6 +45,8 @@ class PersonServices {
         updatedPerson.age = info.age
         updatedPerson.address = info.address
 
+        peopleRepo.save(updatedPerson)
+
         return updatedPerson
     }
 
