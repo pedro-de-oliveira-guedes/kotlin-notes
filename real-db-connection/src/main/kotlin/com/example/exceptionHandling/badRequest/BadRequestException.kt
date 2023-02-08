@@ -1,4 +1,4 @@
-package com.example.exceptionHandling
+package com.example.exceptionHandling.badRequest
 
 import java.lang.Exception
 
