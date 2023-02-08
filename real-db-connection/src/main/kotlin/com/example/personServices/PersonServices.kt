@@ -1,11 +1,9 @@
 package com.example.personServices
 
-import com.example.exceptionHandling.BadRequestException
 import com.example.models.person.Person
 import com.example.repositories.people.PeopleRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.concurrent.atomic.AtomicLong
 import java.util.logging.Logger
 
 @Service
@@ -24,17 +22,7 @@ class PersonServices {
     fun getAllPeople(): List<Person> {
         sysLogger.info("Getting all people.")
 
-        val people: MutableList<Person> = ArrayList()
-        people.add(
-            Person(
-                1,
-                "",
-                21,
-                "abubublé street"
-            )
-        )
-
-        return people
+        return peopleRepo.findAll()
     }
 
     fun getSinglePerson(id: Long): Person {
