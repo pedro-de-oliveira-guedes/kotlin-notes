@@ -30,14 +30,22 @@ class PersonServices {
         sysLogger.info("Getting person by ID.")
 
         return peopleRepo.findById(id).orElseThrow {
-                                            NotFoundException("This person does not exists.")
-                                        }
+            NotFoundException("This person does not exists.")
+        }
     }
 
     fun updatePerson(id: Long, info: Person): Person {
         sysLogger.info("Updating a person's info by its ID.")
 
-        return info
+        val updatedPerson = peopleRepo.findById(id).orElseThrow {
+            NotFoundException("This person does not exists.")
+        }
+
+        updatedPerson.name = info.name
+        updatedPerson.age = info.age
+        updatedPerson.address = info.address
+
+        return updatedPerson
     }
 
     fun deletePerson(id: Long) {
