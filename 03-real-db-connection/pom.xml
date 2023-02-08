@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>real-db-connection</artifactId>
+	<artifactId>03-real-db-connection</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>real-db-connection</name>
 	<description>FIrst attempt to connect to a real mySQL database</description>
