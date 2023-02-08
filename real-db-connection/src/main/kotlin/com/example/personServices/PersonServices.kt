@@ -2,6 +2,8 @@ package com.example.personServices
 
 import com.example.exceptionHandling.BadRequestException
 import com.example.models.person.Person
+import com.example.repositories.people.PeopleRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.concurrent.atomic.AtomicLong
 import java.util.logging.Logger
@@ -10,12 +12,13 @@ import java.util.logging.Logger
 class PersonServices {
     private val sysLogger: Logger = Logger.getLogger(PersonServices::class.java.name)
 
-    private val idAutoGen: AtomicLong = AtomicLong()
+    @Autowired
+    private lateinit var peopleRepo : PeopleRepository
 
     fun createNewPerson(personInfo: Person): Person {
         sysLogger.info("Creating new person.")
 
-        return personInfo
+        return peopleRepo.save(personInfo)
     }
 
     fun getAllPeople(): List<Person> {
