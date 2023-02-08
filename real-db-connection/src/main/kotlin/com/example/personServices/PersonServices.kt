@@ -1,5 +1,6 @@
 package com.example.personServices
 
+import com.example.exceptionHandling.badRequest.NotFoundException
 import com.example.models.person.Person
 import com.example.repositories.people.PeopleRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,12 +29,9 @@ class PersonServices {
     fun getSinglePerson(id: Long): Person {
         sysLogger.info("Getting person by ID.")
 
-        return Person(
-                    1,
-                    "Abubublé",
-                    21,
-                    "abubublé street"
-                    )
+        return peopleRepo.findById(id).orElseThrow {
+                                            NotFoundException("This person does not exists.")
+                                        }
     }
 
     fun updatePerson(id: Long, info: Person): Person {
