@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import br.com.erudio.unittests.mapper.mocks.MockPerson
 import com.example.dataTransferObjects.personDto.PersonDto
 import com.example.models.person.Person
-import com.example.objectMapper.DozerMapper
+import com.example.objectMapper.ObjectMapper
 
 class DozerMapperTest {
 
@@ -19,7 +19,7 @@ class DozerMapperTest {
 
     @Test
     fun parseEntityToVOTest() {
-        val output: PersonDto = DozerMapper.parseObject(
+        val output: PersonDto = ObjectMapper.parseObject(
             origin = inputObject!!.mockEntity(),
             destine = PersonDto::class.java
         )
@@ -32,7 +32,7 @@ class DozerMapperTest {
     @Test
     fun parseEntityListToVOListTest() {
         val outputList: List<PersonDto> =
-            DozerMapper.parseObjectList(inputObject!!.mockEntityList(), PersonDto::class.java)
+            ObjectMapper.parseObjectList(inputObject!!.mockEntityList(), PersonDto::class.java)
 
         val outputZero: PersonDto = outputList[0]
 
@@ -57,7 +57,7 @@ class DozerMapperTest {
     @Test
     fun parseVOToEntityTest() {
 
-        val output: Person = DozerMapper.parseObject(inputObject!!.mockVO(), Person::class.java)
+        val output: Person = ObjectMapper.parseObject(inputObject!!.mockVO(), Person::class.java)
 
         assertEquals(0, output.id)
         assertEquals("Name Test0", output.name)
@@ -68,7 +68,7 @@ class DozerMapperTest {
     @Test
     fun parserVOListToEntityListTest() {
 
-        val outputList: List<Person> = DozerMapper.parseObjectList(inputObject!!.mockVOList(), Person::class.java)
+        val outputList: List<Person> = ObjectMapper.parseObjectList(inputObject!!.mockVOList(), Person::class.java)
 
         val outputZero: Person = outputList[0]
         assertEquals(0, outputZero.id)

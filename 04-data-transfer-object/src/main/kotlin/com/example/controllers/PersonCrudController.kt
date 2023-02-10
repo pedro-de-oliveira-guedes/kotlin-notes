@@ -2,7 +2,7 @@ package com.example.controllers
 
 import com.example.dataTransferObjects.personDto.PersonDto
 import com.example.models.person.Person
-import com.example.objectMapper.DozerMapper
+import com.example.objectMapper.ObjectMapper
 import com.example.personServices.PersonServices
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
@@ -29,9 +29,9 @@ class PersonCrudController {
                  consumes = [MediaType.APPLICATION_JSON_VALUE],)
     fun createPerson(@RequestBody info: PersonDto): PersonDto {
         try {
-            val personInfo: Person = DozerMapper.parseObject(info, Person::class.java)
+            val personInfo: Person = ObjectMapper.parseObject(info, Person::class.java)
 
-            return DozerMapper.parseObject(service.createNewPerson(personInfo), PersonDto::class.java)
+            return ObjectMapper.parseObject(service.createNewPerson(personInfo), PersonDto::class.java)
         }
         catch (err: Exception) {
             throw err
@@ -42,7 +42,7 @@ class PersonCrudController {
                 produces = [MediaType.APPLICATION_JSON_VALUE],)
     fun getPeople(): List<PersonDto> {
         try {
-            return DozerMapper.parseObjectList(service.getAllPeople(), PersonDto::class.java)
+            return ObjectMapper.parseObjectList(service.getAllPeople(), PersonDto::class.java)
         }
         catch (err: Exception) {
             throw err
@@ -53,7 +53,7 @@ class PersonCrudController {
                 produces = [MediaType.APPLICATION_JSON_VALUE],)
     fun getPerson(@PathVariable(value = "id")id: Long): PersonDto {
         try {
-            return DozerMapper.parseObject(service.getSinglePerson(id), PersonDto::class.java)
+            return ObjectMapper.parseObject(service.getSinglePerson(id), PersonDto::class.java)
         }
         catch (err: Exception) {
             throw err
@@ -65,9 +65,9 @@ class PersonCrudController {
                 produces = [MediaType.APPLICATION_JSON_VALUE])
     fun updatePerson(@PathVariable(value = "id") id: Long, @RequestBody info: PersonDto): PersonDto {
         try {
-            val personInfo: Person = DozerMapper.parseObject(info, Person::class.java)
+            val personInfo: Person = ObjectMapper.parseObject(info, Person::class.java)
 
-            return DozerMapper.parseObject(service.updatePerson(id, personInfo), PersonDto::class.java)
+            return ObjectMapper.parseObject(service.updatePerson(id, personInfo), PersonDto::class.java)
         }
         catch (err: Exception) {
             throw err

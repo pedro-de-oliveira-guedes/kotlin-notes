@@ -1,11 +1,11 @@
 package com.example.objectMapper
 
-import com.github.dozermapper.core.DozerBeanMapperBuilder
-import com.github.dozermapper.core.Mapper
+import org.modelmapper.ModelMapper
 
-object DozerMapper {
 
-    private val mapper: Mapper = DozerBeanMapperBuilder.buildDefault()
+object ObjectMapper {
+
+    private val mapper: ModelMapper = ModelMapper()
 
     fun <Origin, Destine> parseObject(origin: Origin, destine: Class<Destine>?): Destine {
         return mapper.map(origin, destine)
