@@ -5,17 +5,17 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.1</version>
+		<version>3.0.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.erudio</groupId>
-	<artifactId>rest-with-spring-boot-and-kotlin-erudio</artifactId>
+	<artifactId>05-flyway-migrations</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rest-with-spring-boot-and-kotlin-erudio</name>
-	<description>Demo project for Spring Boot</description>
+	<name>migrations</name>
+	<description>Using migrations for the first time with Spring Boot</description>
 	<properties>
-		<java.version>18</java.version>
-		<kotlin.version>1.8.0</kotlin.version>
+		<java.version>17</java.version>
+		<kotlin.version>1.7.22</kotlin.version>
 		<!--<dozer.version>6.5.2</dozer.version>-->
 		<dozer.version>6.4.1</dozer.version>
 	</properties>

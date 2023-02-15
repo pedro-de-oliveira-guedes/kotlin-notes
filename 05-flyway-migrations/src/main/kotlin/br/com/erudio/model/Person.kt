@@ -3,7 +3,7 @@ package br.com.erudio.model
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "person")
+@Table(name = "people")
 data class Person (
 
     @Id

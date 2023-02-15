@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>03-real-db-connection</artifactId>
+	<artifactId>04-data-transfer-object</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>data-transfer-object</name>
 	<description>FIrst attempt to use the Data Transfer Object in an application.</description>
