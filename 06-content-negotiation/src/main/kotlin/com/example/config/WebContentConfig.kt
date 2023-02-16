@@ -7,6 +7,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
 class WebContentConfig : WebMvcConfigurer {
+
+    private val APPLICATION_YAML = MediaType.valueOf("application/x-yaml")
+
     override fun configureContentNegotiation(configurer: ContentNegotiationConfigurer) {
         configurer.favorParameter(false)
             .ignoreAcceptHeader(false)
@@ -14,5 +17,6 @@ class WebContentConfig : WebMvcConfigurer {
             .defaultContentType(MediaType.APPLICATION_JSON)
                 .mediaType("json", MediaType.APPLICATION_JSON)
                 .mediaType("xml", MediaType.APPLICATION_XML)
+                .mediaType("x-yaml", APPLICATION_YAML)
     }
 }
