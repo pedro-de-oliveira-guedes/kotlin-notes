@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/person/v1")
+@RequestMapping("/api/v1/person")
 class PersonController {
 
 
@@ -24,32 +24,32 @@ class PersonController {
     private lateinit var service: PersonService
     // var service: PersonService = PersonService()
 
-    @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE])
+    @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
     fun findAll(): List<PersonVO> {
         return service.findAll()
     }
 
     @GetMapping(value = ["/{id}"],
-                    produces = [MediaType.APPLICATION_JSON_VALUE])
+                produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
     fun findById(@PathVariable(value="id") id: Long): PersonVO {
         return service.findById(id)
     }
 
-    @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE],
-                produces = [MediaType.APPLICATION_JSON_VALUE])
+    @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE],
+                produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
     fun create(@RequestBody person: PersonVO): PersonVO {
         return service.create(person)
 
     }
 
-    @PutMapping(consumes = [MediaType.APPLICATION_JSON_VALUE],
-                    produces = [MediaType.APPLICATION_JSON_VALUE])
+    @PutMapping(consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE],
+                    produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
     fun update(@RequestBody person: PersonVO): PersonVO {
         return service.update(person)
     }
 
     @DeleteMapping(value = ["/{id}"],
-        produces = [MediaType.APPLICATION_JSON_VALUE])
+        produces = [MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE])
     fun delete(@PathVariable(value="id") id: Long) : ResponseEntity<*>{
         service.delete(id)
         return ResponseEntity.noContent().build<Any>()
