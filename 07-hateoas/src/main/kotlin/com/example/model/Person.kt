@@ -19,6 +19,6 @@ data class Person (
     @Column(nullable = false, length = 100)
     var address: String = "",
 
-    @Column(nullable = false, length = 6)
+    @Column(nullable = false, length = 50)
     var gender: String = ""
 )
