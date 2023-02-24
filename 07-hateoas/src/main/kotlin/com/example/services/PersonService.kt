@@ -55,7 +55,10 @@ class PersonService {
         entity.lastName = person.lastName
         entity.address = person.address
         entity.gender = person.gender
-        return DozerMapper.parseObject(repository.save(entity), PersonVO::class.java)
+
+        val selfRel = linkTo(PersonController::class.java).slash(person.key).withSelfRel()
+
+        return DozerMapper.parseObject(repository.save(entity), PersonVO::class.java).add(selfRel)
     }
 
     fun delete(id: Long) {
