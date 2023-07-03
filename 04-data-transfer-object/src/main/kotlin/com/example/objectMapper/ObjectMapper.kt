@@ -2,7 +2,6 @@ package com.example.objectMapper
 
 import org.modelmapper.ModelMapper
 
-
 object ObjectMapper {
 
     private val mapper: ModelMapper = ModelMapper()

@@ -4,7 +4,6 @@ import com.example.exceptionHandling.badRequest.NotFoundException
 import com.example.models.person.Person
 import com.example.repositories.people.PeopleRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import java.util.logging.Logger
 

@@ -1,6 +1,7 @@
 package br.com.erudio.controller
 
 import br.com.erudio.data.vo.v1.PersonVO
+import br.com.erudio.data.vo.v2.PersonVO as PersonVOV2
 import br.com.erudio.services.PersonService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/person/v1")
+@RequestMapping("/api/person")
 class PersonController {
 
 
@@ -24,27 +25,55 @@ class PersonController {
     private lateinit var service: PersonService
     // var service: PersonService = PersonService()
 
-    @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun findAll(): List<PersonVO> {
+    @GetMapping(value = ["/v1"], produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun findAllV1(): List<PersonVO> {
         return service.findAll()
     }
 
-    @GetMapping(value = ["/{id}"],
-                    produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun findById(@PathVariable(value="id") id: Long): PersonVO {
+    @GetMapping(value = ["/v2"], produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun findAllV2(): List<PersonVOV2> {
+        return service.findAll()
+    }
+
+    @GetMapping(value = ["/v1/{id}"],
+                produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun findByIdv1(@PathVariable(value="id") id: Long): PersonVO {
         return service.findById(id)
     }
 
-    @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE],
+    @GetMapping(value = ["/v2/{id}"],
                 produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun create(@RequestBody person: PersonVO): PersonVO {
+    fun findByIdV2(@PathVariable(value="id") id: Long): PersonVOV2 {
+        return service.findById(id)
+    }
+
+    @PostMapping(value = ["/v1"],
+                consumes = [MediaType.APPLICATION_JSON_VALUE],
+                produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun createV1(@RequestBody person: PersonVO): PersonVO {
         return service.create(person)
 
     }
 
-    @PutMapping(consumes = [MediaType.APPLICATION_JSON_VALUE],
-                    produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun update(@RequestBody person: PersonVO): PersonVO {
+    @PostMapping(value = ["/v2"],
+                consumes = [MediaType.APPLICATION_JSON_VALUE],
+                produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun createV2(@RequestBody person: PersonVOV2): PersonVOV2 {
+        return service.create(person)
+
+    }
+
+    @PutMapping(value = ["/v1"],
+                consumes = [MediaType.APPLICATION_JSON_VALUE],
+                produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun updateV1(@RequestBody person: PersonVO): PersonVO {
+        return service.update(person)
+    }
+
+    @PutMapping(value = ["/v2"],
+                consumes = [MediaType.APPLICATION_JSON_VALUE],
+                produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun updateV2(@RequestBody person: PersonVOV2): PersonVOV2 {
         return service.update(person)
     }
 
