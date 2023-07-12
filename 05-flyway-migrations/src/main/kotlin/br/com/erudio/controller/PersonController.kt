@@ -32,7 +32,7 @@ class PersonController {
 
     @GetMapping(value = ["/v2"], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun findAllV2(): List<PersonVOV2> {
-        return service.findAll()
+        return service.findAllV2()
     }
 
     @GetMapping(value = ["/v1/{id}"],
@@ -44,7 +44,7 @@ class PersonController {
     @GetMapping(value = ["/v2/{id}"],
                 produces = [MediaType.APPLICATION_JSON_VALUE])
     fun findByIdV2(@PathVariable(value="id") id: Long): PersonVOV2 {
-        return service.findById(id)
+        return service.findByIdV2(id)
     }
 
     @PostMapping(value = ["/v1"],
@@ -59,7 +59,7 @@ class PersonController {
                 consumes = [MediaType.APPLICATION_JSON_VALUE],
                 produces = [MediaType.APPLICATION_JSON_VALUE])
     fun createV2(@RequestBody person: PersonVOV2): PersonVOV2 {
-        return service.create(person)
+        return service.createV2(person)
 
     }
 
@@ -74,7 +74,7 @@ class PersonController {
                 consumes = [MediaType.APPLICATION_JSON_VALUE],
                 produces = [MediaType.APPLICATION_JSON_VALUE])
     fun updateV2(@RequestBody person: PersonVOV2): PersonVOV2 {
-        return service.update(person)
+        return service.updateV2(person)
     }
 
     @DeleteMapping(value = ["/{id}"],
