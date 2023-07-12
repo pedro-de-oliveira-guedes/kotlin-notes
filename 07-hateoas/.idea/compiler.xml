@@ -6,12 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="rest-with-spring-boot-and-kotlin-erudio" />
+        <module name="07-hateoas" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="05-flyway-migrations" target="17" />
+      <module name="06-content-negotiation" target="17" />
+      <module name="rest-with-spring-boot-and-kotlin-erudio" target="18" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="05-flyway-migrations" options="-parameters" />
+      <module name="06-content-negotiation" options="-parameters" />
+      <module name="07-hateoas" options="-parameters" />
       <module name="rest-with-spring-boot-and-kotlin-erudio" options="-parameters" />
     </option>
   </component>
