@@ -1,6 +1,7 @@
 package com.example.exceptions.handler
 
 import com.example.exceptions.ExceptionResponse
+import com.example.exceptions.NullObjectException
 import com.example.exceptions.ResourceNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -29,11 +30,22 @@ class CustomizedResponseEntityExceptionHandler : ResponseEntityExceptionHandler(
     @ExceptionHandler(ResourceNotFoundException::class)
     fun handleResourceNotFoundExceptions(ex: Exception, request: WebRequest) :
             ResponseEntity<ExceptionResponse> {
-        val exceptioResponse = ExceptionResponse(
+        val exceptionResponse = ExceptionResponse(
             Date(),
             ex.message,
             request.getDescription(false)
         )
-        return ResponseEntity<ExceptionResponse>(exceptioResponse, HttpStatus.NOT_FOUND)
+        return ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.NOT_FOUND)
+    }
+
+    @ExceptionHandler(NullObjectException::class)
+    fun handleNullObjectReceivedException(ex: Exception, request: WebRequest) :
+            ResponseEntity<ExceptionResponse> {
+        val exceptionResponse = ExceptionResponse(
+            Date(),
+            ex.message,
+            request.getDescription(false)
+        )
+        return ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.NOT_FOUND)
     }
 }
