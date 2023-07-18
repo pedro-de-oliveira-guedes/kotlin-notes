@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1/person")
 class PersonController {
-
-
     @Autowired
     private lateinit var service: PersonService
     // var service: PersonService = PersonService()

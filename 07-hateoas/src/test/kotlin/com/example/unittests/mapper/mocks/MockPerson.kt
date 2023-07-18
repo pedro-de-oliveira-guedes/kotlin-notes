@@ -29,7 +29,7 @@ class MockPerson {
         return persons
     }
 
-    fun mockEntity(number: Int): Person {
+    private fun mockEntity(number: Int): Person {
         val person = Person()
         person.address = "Address Test$number"
         person.firstName = "First Name Test$number"
@@ -39,7 +39,7 @@ class MockPerson {
         return person
     }
 
-    fun mockVO(number: Int): PersonVO {
+    private fun mockVO(number: Int): PersonVO {
         val person = PersonVO()
         person.address = "Address Test$number"
         person.firstName = "First Name Test$number"
