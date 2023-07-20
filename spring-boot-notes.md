@@ -228,3 +228,8 @@ Nessa seção, há um passo a passo básico sobre como configurar um <i>endpoint
         Por padrão, o TomCat utiliza a porta 8080, portanto basta acessar "<i>localhost:8080/[sua rota aqui]</i>" para testar e conferir os resultados.
     </li>
 </ol>
+1. Criar o modelo da entidade
+2. Criar o repositório que imoplementa a entidade, conectando-a com o banco de dados
+3. Criar um Value Object para comunicação com o mundo exterior
+4. Criar um serviço que integre o controlador com o banco de dados
+5. Criar o controlador, que recebe as requisições HTTP e realiza as operações
