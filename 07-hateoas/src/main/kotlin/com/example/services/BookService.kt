@@ -1,7 +1,7 @@
 package com.example.services
 
+import com.example.controller.BookController
 import com.example.data.vo.v1.BookVO
-import com.example.data.vo.v1.PersonVO
 import com.example.exceptions.NullObjectException
 import com.example.exceptions.ResourceNotFoundException
 import com.example.mapper.DozerMapper
@@ -10,6 +10,7 @@ import com.example.repository.BookRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.logging.Logger
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo
 
 @Service
 class BookService {
@@ -24,9 +25,10 @@ class BookService {
         val books = repository.findAll();
         var booksVO = DozerMapper.parseListObjects(books, BookVO::class.java);
 
-//        for (book in booksVO) {
-//            val selfRel = linkTo(BookC)
-//        }
+        for (book in booksVO) {
+            val selfRel = linkTo(BookController::class.java).slash(book.key).withSelfRel();
+            book.add(selfRel);
+        }
 
         return booksVO;
     }
@@ -36,8 +38,9 @@ class BookService {
 
         val book = repository.findById(id);
         var bookVO = DozerMapper.parseObject(book, BookVO::class.java);
+        val selfRel = linkTo(BookController::class.java).slash(id).withSelfRel();
 
-        return bookVO;
+        return bookVO.add(selfRel);
     }
 
     fun create(book: BookVO?) : BookVO {
@@ -47,8 +50,9 @@ class BookService {
 
         val bookEntity = DozerMapper.parseObject(book, Book::class.java);
         var bookVO = DozerMapper.parseObject(repository.save(bookEntity), BookVO::class.java);
+        val selfRel = linkTo(BookController::class.java).slash(book.key).withSelfRel();
 
-        return bookVO;
+        return bookVO.add(selfRel);
     }
 
     fun update(book: BookVO?) : BookVO {
@@ -65,8 +69,9 @@ class BookService {
         entity.title = entity.title;
 
         val bookVO = DozerMapper.parseObject(repository.save(entity), BookVO::class.java);
+        val selfRel = linkTo(BookController::class.java).slash(book.key).withSelfRel();
 
-        return bookVO;
+        return bookVO.add(selfRel);
     }
 
     fun delete(id: Long) {
