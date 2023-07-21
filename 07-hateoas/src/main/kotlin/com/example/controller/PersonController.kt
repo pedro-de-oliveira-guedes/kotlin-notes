@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
+import org.springframework.web.bind.annotation.CrossOrigin
 
 @RestController
 @RequestMapping("/api/v1/person")
@@ -26,7 +27,6 @@ import io.swagger.v3.oas.annotations.media.Schema
 class PersonController {
     @Autowired
     private lateinit var service: PersonService
-    // var service: PersonService = PersonService()
 
     @GetMapping(produces = [MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML])
     @Operation(summary = "Gets every registered person",
@@ -68,6 +68,7 @@ class PersonController {
         return service.findAll()
     }
 
+//    @CrossOrigin(origins = ["http://localhost:8080"])
     @GetMapping(value = ["/{id}"],
                 produces = [MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML])
     @Operation(summary = "Gets one specific person",
