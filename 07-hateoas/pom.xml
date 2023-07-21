@@ -19,6 +19,8 @@
 		<!--<dozer.version>6.5.2</dozer.version>-->
 		<dozer.version>6.4.1</dozer.version>
 		<springdoc.version>2.1.0</springdoc.version>
+		<test-containers.version>1.16.3</test-containers.version>
+		<rest-assured.version>4.5.0</rest-assured.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -97,11 +99,17 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 
