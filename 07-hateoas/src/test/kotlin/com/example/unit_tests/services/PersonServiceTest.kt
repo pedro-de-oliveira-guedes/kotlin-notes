@@ -1,9 +1,9 @@
-package com.example.mockito.services
+package com.example.unit_tests.services
 
 import com.example.exceptions.NullObjectException
 import com.example.repository.PersonRepository
 import com.example.services.PersonService
-import com.example.unittests.mapper.mocks.MockPerson
+import com.example.unit_tests.mocks.MockPerson
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 

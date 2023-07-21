@@ -1,4 +1,4 @@
-package com.example.unittests.mapper
+package com.example.unit_tests.mapper
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import com.example.data.vo.v1.PersonVO
 import com.example.mapper.DozerMapper
 import com.example.model.Person
-import com.example.unittests.mapper.mocks.MockPerson
+import com.example.unit_tests.mocks.MockPerson
 
 class DozerMapperTest {
 
