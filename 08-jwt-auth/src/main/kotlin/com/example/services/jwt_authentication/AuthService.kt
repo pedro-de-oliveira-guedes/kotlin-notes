@@ -43,7 +43,20 @@ class AuthService {
 
             ResponseEntity.ok(tokenResponse)
         } catch(exc: Exception) {
-            throw  BadCredentialsException("Invalid username or password received.")
+            throw  BadCredentialsException("Invalid username or password received. " + exc.message)
         }
+    }
+
+    fun refreshToken(username: String, refreshToken: String) : ResponseEntity<*> {
+        logger.info("User ${username} is trying to refresh their token.")
+
+        val user = repository.findByUsername(username)
+
+        val tokenResponse: TokenVO = if (user != null)
+            tokenProvider.refreshToken(refreshToken)
+        else
+            throw UsernameNotFoundException("Username $username not found.")
+
+        return ResponseEntity.ok(tokenResponse)
     }
 }

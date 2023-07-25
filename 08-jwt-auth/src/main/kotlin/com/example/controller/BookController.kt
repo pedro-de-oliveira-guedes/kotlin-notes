@@ -175,8 +175,8 @@ class BookController {
 
     @DeleteMapping(value = ["/{id}"],
         produces = [MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML])
-    @Operation(summary = "Deletes a registered person",
-        tags = ["People"],
+    @Operation(summary = "Deletes a registered book",
+        tags = ["Books"],
         responses = [
             ApiResponse( description = "No Content", responseCode = "204",
                 content = [

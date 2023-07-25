@@ -14,6 +14,8 @@ class PasswordEncoder {
         val passwordEncoder = DelegatingPasswordEncoder("pbkdf2", encoders)
         passwordEncoder.setDefaultPasswordEncoderForMatches(pbkdf2Encoder)
 
-        return passwordEncoder.encode(password)
+        val encodedPassword = passwordEncoder.encode(password)
+
+        return encodedPassword.split("}")[1]
     }
 }

@@ -55,7 +55,8 @@ class SecurityConfig {
                         "/auth/signin",
                         "/auth/refresh/**",
                         "/api-docs/**",
-                        "/swagger-ui/index.html**",).permitAll()
+                        "/v3/api-docs/**",
+                        "/swagger-ui/**",).permitAll()
                 .requestMatchers("/api/**").authenticated()
                 .requestMatchers("/users").denyAll()
             }
